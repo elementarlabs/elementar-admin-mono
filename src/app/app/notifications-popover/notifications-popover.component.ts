@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Notification, NotificationDefDirective, NotificationListComponent } from '@elementar-ui/components';
+import { Notification, NotificationDefDirective, NotificationListComponent } from '@elementar-ui/components/notifications';
 import { RouterLink } from '@angular/router';
 import { MatAnchor, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatRipple } from '@angular/material/core';
-import { PopoverComponent } from '@elementar-ui/components';
+import { PopoverComponent } from '@elementar-ui/components/popover';
 import { MentionedInCommentNotification } from '../mentioned-in-comment/mentioned-in-comment.notification';
 import {
   InviteToEditFilesInFolderNotification

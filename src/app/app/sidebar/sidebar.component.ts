@@ -3,14 +3,14 @@ import { MatIcon } from '@angular/material/icon';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
 import { Location } from '@angular/common';
-import { OrderByPipe } from '@elementar-ui/components';
+import { OrderByPipe } from '@elementar-ui/components/core';
 import {
   NavigationComponent,
   NavigationGroupComponent,
   NavigationGroupMenuComponent,
   NavigationGroupToggleComponent, NavigationHeadingComponent,
   NavigationItem, NavigationItemComponent
-} from '@elementar-ui/components';
+} from '@elementar-ui/components/navigation';
 import { ToolbarAComponent } from '../toolbar-a/toolbar.component';
 
 @Component({
