@@ -1,46 +1,37 @@
-import { Component, inject, viewChild } from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
+import { Component, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
 import { Location } from '@angular/common';
-import { OrderByPipe } from '@elementar-ui/components/core';
-import {
-  NavigationComponent,
-  NavigationGroupComponent,
-  NavigationGroupMenuComponent,
-  NavigationGroupToggleComponent, NavigationHeadingComponent,
-  NavigationItem, NavigationItemComponent
-} from '@elementar-ui/components/navigation';
 import { ToolbarAComponent } from '../toolbar-a/toolbar.component';
+import {
+  SidebarBodyComponent, SidebarComponent as EmrSidebarComponent,
+  SidebarFooterComponent, SidebarHeaderComponent, SidebarNavComponent,
+  SidebarNavItemComponent
+} from '@elementar-ui/components/sidebar';
+import { LogoComponent } from '@elementar-ui/components/logo';
 
 @Component({
   selector: 'app-sidebar',
   imports: [
-    MatIcon,
     RouterLink,
-    OrderByPipe,
     ToolbarAComponent,
-    NavigationGroupToggleComponent,
-    NavigationGroupMenuComponent,
-    NavigationItemComponent,
-    NavigationGroupComponent,
-    NavigationHeadingComponent,
-    NavigationComponent
+    SidebarFooterComponent,
+    SidebarNavItemComponent,
+    SidebarNavComponent,
+    SidebarBodyComponent,
+    LogoComponent,
+    SidebarHeaderComponent,
+    EmrSidebarComponent
   ],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss',
-  host: {
-    'class': 'sidebar'
-  }
+  styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent {
   router = inject(Router);
   location = inject(Location);
   height: string | null = '200px';
 
-  readonly navigation = viewChild.required<any>('navigation');
-
-  navItems: NavigationItem[] = [
+  navItems: any[] = [
     {
       key: 'home',
       type: 'link',
@@ -61,7 +52,7 @@ export class SidebarComponent {
       name: 'Settings',
     }
   ];
-  navItemLinks: NavigationItem[] = [];
+  navItemLinks: any[] = [];
   activeKey: string | null = 'home';
 
   ngOnInit() {
@@ -69,7 +60,7 @@ export class SidebarComponent {
       this.navItemLinks.push(navItem);
 
       if (navItem.children) {
-        this.navItemLinks = this.navItemLinks.concat(navItem.children as NavigationItem[]);
+        this.navItemLinks = this.navItemLinks.concat(navItem.children as any[]);
       }
     });
     this._activateLink();

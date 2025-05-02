@@ -1,5 +1,5 @@
 import {
-  ApplicationConfig,
+  ApplicationConfig, inject,
   provideAppInitializer,
   provideZoneChangeDetection
 } from '@angular/core';
@@ -8,11 +8,12 @@ import { provideRouter, TitleStrategy, withViewTransitions } from '@angular/rout
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { PageTitleStrategyService } from '@elementar-ui/components/core';
+import { ENVIRONMENT, EnvironmentService, GlobalStore, PageTitleStrategyService } from '@elementar-ui/components/core';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,23 +24,22 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideStore(),
     provideNativeDateAdapter(),
-    provideAppInitializer(() => {
-      // Initialize from backend
-      // const http = inject(HttpClient);
-      // return firstValueFrom(
-      //   http.get('https://example.com/api/initialize')
-      //     .pipe(
-      //       tap((response: any) => console.log('Initializing App'))
-      //     )
-      // );
-      return new Promise((resolve, reject) => {
-        resolve(true);
-      });
-    }),
+    {
+      provide: ENVIRONMENT,
+      useValue: environment
+    },
     {
       provide: TitleStrategy,
       useClass: PageTitleStrategyService
     },
+    provideAppInitializer(() => {
+      const envService = inject(EnvironmentService);
+      const globalStore = inject(GlobalStore);
+      return new Promise((resolve, reject) => {
+        globalStore.setPageTitle(envService.getValue('pageTitle'));
+        resolve(true);
+      });
+    }),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'outline' }

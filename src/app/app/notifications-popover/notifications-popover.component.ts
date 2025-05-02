@@ -23,7 +23,7 @@ import {
     MatIcon,
     MatIconButton,
     MatRipple
-],
+  ],
   templateUrl: './notifications-popover.component.html',
   styleUrl: './notifications-popover.component.scss'
 })
