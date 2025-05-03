@@ -1,7 +1,7 @@
 export const environment = {
-  siteUrl: 'https://mono.elementarui.com',
-  googleAnalyticsId: 'G-LZYWG6MYJ4',
-  pageTitle: 'Elementar Admin',
+  siteUrl: 'https://localhost:4200',
+  googleAnalyticsId: '',
+  pageTitle: 'Elementar Admin / Mono Layout',
   pageMeta: {
     keywords: [],
     description: '',
