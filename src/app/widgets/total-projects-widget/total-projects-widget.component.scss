@@ -1,18 +1,20 @@
+@reference 'tailwindcss';
+
 :host {
   display: block;
   height: 100%;
 
   emr-mchart-line {
-    --emr-mchart-line-line-bg: var(--color-amber-500);
-    --emr-mchart-line-area-bg: var(--color-amber-100);
-    --emr-mchart-line-marker-dot-bg: var(--color-amber-500);
-    --emr-mchart-line-area-gradient-start-color: var(--color-amber-200);
+    --emr-mchart-line-line-bg: theme(--color-amber-500);
+    --emr-mchart-line-area-bg: theme(--color-amber-100);
+    --emr-mchart-line-marker-dot-bg: theme(--color-amber-500);
+    --emr-mchart-line-area-gradient-start-color: theme(--color-amber-200);
   }
 }
 
 :host-context(html.dark) {
   emr-mchart-line {
     --emr-mchart-line-area-bg: #fef3c7;
-    --emr-mchart-line-area-gradient-start-color: var(--color-neutral-700);
+    --emr-mchart-line-area-gradient-start-color: theme(--color-neutral-700);
   }
 }
