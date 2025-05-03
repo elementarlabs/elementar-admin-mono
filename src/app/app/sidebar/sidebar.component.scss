@@ -19,6 +19,14 @@
     }
   }
 
+  emr-sidebar-header {
+    --emr-sidebar-header-padding: 0 --spacing(10);
+  }
+
+  emr-sidebar-body {
+    --emr-sidebar-body-padding: --spacing(6);
+  }
+
   emr-sidebar-nav {
     --emr-sidebar-nav-item-hover-bg: var(--color-primary-200);
     --emr-sidebar-nav-item-active-bg: var(--color-primary-300);
